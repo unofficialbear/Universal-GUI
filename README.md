@@ -12,5 +12,7 @@ Ive only tested the cheat on Synapse X (3rd link)
 
 Links
 Universal GUI...........: https://github.com/unofficialbear/Universal-Cheat/blob/main/Version%201.0
+
 Elerium UI Library v2 ..: https://v3rmillion.net/showthread.php?tid=959294
+
 Synapse X...............: https://x.synapse.to
