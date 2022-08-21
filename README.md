@@ -6,9 +6,9 @@
 * Free to edit
 * Free to use
 
-# This was made recently, expect bugs
-* Made with Elerium UI Library v2 (2nd link)
-* Ive only tested the cheat on Synapse X (3rd link)
+- This was made recently, expect bugs
+- Made with Elerium UI Library v2 (2nd link)
+- Ive only tested the cheat on Synapse X (3rd link)
 
 # Links
 * Universal GUI...........: https://github.com/unofficialbear/Universal-Cheat/blob/main/Version%201.0
