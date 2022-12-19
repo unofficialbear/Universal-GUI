@@ -12,10 +12,10 @@ local ui_options = {
 }
 
 do
-	local imgui = game:GetService("CoreGui"):FindFirstChild("imgui")
+	local ps = game:GetService("CoreGui"):FindFirstChild("ps")
 end
 
-local imgui = Instance.new("ScreenGui")
+local ps = Instance.new("ScreenGui")
 local Prefabs = Instance.new("Frame")
 local Label = Instance.new("TextLabel")
 local Window = Instance.new("ImageLabel")
@@ -88,11 +88,11 @@ local Input = Instance.new("TextButton")
 local Input_Roundify_4px = Instance.new("ImageLabel")
 local Windows = Instance.new("Frame")
 
-imgui.Name = "imgui"
-imgui.Parent = game:GetService("CoreGui")
+ps.Name = "ps"
+ps.Parent = game:GetService("CoreGui")
 
 Prefabs.Name = "Prefabs"
-Prefabs.Parent = imgui
+Prefabs.Parent = ps
 Prefabs.BackgroundColor3 = Color3.new(1, 1, 1)
 Prefabs.Size = UDim2.new(0, 100, 0, 100)
 Prefabs.Visible = false
@@ -801,14 +801,14 @@ Input_Roundify_4px.ScaleType = Enum.ScaleType.Slice
 Input_Roundify_4px.SliceCenter = Rect.new(4, 4, 4, 4)
 
 Windows.Name = "Windows"
-Windows.Parent = imgui
+Windows.Parent = ps
 Windows.BackgroundColor3 = Color3.new(1, 1, 1)
 Windows.BackgroundTransparency = 1
 Windows.Position = UDim2.new(0, 20, 0, 20)
 Windows.Size = UDim2.new(1, 20, 1, -20)
 
 --[[ Script ]]--
-script.Parent = imgui
+script.Parent = ps
 
 local UIS = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
