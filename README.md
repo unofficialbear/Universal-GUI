@@ -1,5 +1,5 @@
-# Universal-Cheat / Univesal GUI
-* Universal-Cheat is a simple GUI developed by spin#0866 in 8/21/2022 (1st link)
+# Univesal GUI
+* Universal GUI is a simple GUI developed by 반전#0877 in 8/21/2022 (1st link)
 * Frequent updates, unless im busy.
 * Anti detection
 * Fully open-sourced
