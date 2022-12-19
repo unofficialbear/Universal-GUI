@@ -12,6 +12,6 @@
 - Changelog comes with the GUI (Universal GUI > Information > Open documentation)
 
 # Links
-* Universal GUI........................: https://github.com/unofficialbear/Universal-GUI/blob/main/Version%201.0
+* Universal GUI........................: https://github.com/unofficialbear/Universal-GUI/blob/main/Version%201.17
 * Elerium UI Library v2 ...............: https://v3rmillion.net/showthread.php?tid=959294
 * Synapse X............................: https://x.synapse.to
