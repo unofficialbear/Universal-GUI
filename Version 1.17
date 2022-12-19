@@ -1,9 +1,18 @@
 --[[
-	ui-engine-v2
-	version 1.3a
-	by Singularity (V3rm @ King Singularity) (Discord @ Singularity#5490)
---]]
-repeat wait() until game:IsLoaded()
+	[Version 1.17]
+	Made by 반전#0877
+	Discord server invite link: https://discord.gg/tYtDJZFM5X
+]]
+
+-- [SETTINGS] --
+local Autoexec = true
+local Executehotkey = Enum.KeyCode.F4 -- Set this to any key you want.
+
+-- [ MAIN SCRIPT (OPEN SOURCED) ] --
+local UserInputService = game:GetService("UserInputService")
+
+UserInputService.InputBegan:Connect(function(key)
+repeat wait() until key.KeyCode == Executehotkey
 
 local ui_options = {
 	main_color = Color3.fromRGB(41, 74, 122),
@@ -14,8 +23,10 @@ local ui_options = {
 
 do
 	local imgui = game:GetService("CoreGui"):FindFirstChild("imgui")
-	if imgui then imgui:Destroy() end
 end
+
+repeat wait() until game:IsLoaded() -- Waits for game to load
+if game.PlaceId ~= 2534724415 then -- Doesnt execute in erlc because of its anticheat
 
 local imgui = Instance.new("ScreenGui")
 local Prefabs = Instance.new("Frame")
@@ -90,6 +101,37 @@ local Input = Instance.new("TextButton")
 local Input_Roundify_4px = Instance.new("ImageLabel")
 local Windows = Instance.new("Frame")
 local keybind
+
+-------------- MOVEMOUSE MOD --------------
+local MoveMouse = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local UselessButton = Instance.new("TextButton")
+
+MoveMouse.Name = "MoveMouse"
+MoveMouse.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+MoveMouse.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Main.Name = "Main"
+Main.Parent = MoveMouse
+Main.BackgroundColor3 = Color3.new(1, 1, 1)
+Main.BorderSizePixel = 0
+Main.Position = UDim2.new(0.4338139, 0, 0.426917523, 0)
+Main.Visible = false
+
+UselessButton.Name = "UselessButton"
+UselessButton.Parent = Main
+UselessButton.BackgroundColor3 = Color3.new(1, 1, 1)
+UselessButton.BorderSizePixel = 0
+UselessButton.Position = UDim2.new(-0.5, 0, 0.25, 0)
+UselessButton.Modal = true
+UselessButton.Font = Enum.Font.SourceSans
+UselessButton.Text = ""
+UselessButton.TextColor3 = Color3.new(0, 0, 0)
+UselessButton.TextSize = 14
+
+local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+-------------- MOVEMOUSE MOD --------------
 
 imgui.Name = "imgui"
 imgui.Parent = game:GetService("CoreGui")
@@ -833,10 +875,47 @@ UIS.InputBegan:Connect(function(input, gameProcessed)
 		if script.Parent then
 			if not checks.binding then
 				script.Parent.Enabled = not script.Parent.Enabled
+				Main.Visible = not Main.Visible
 			end
 		end
 	end
 end)
+
+local function changelog()
+	rconsoleclear()
+	rconsolename('Roblox client')
+	rconsoleprint([[[>] 08/21/2022 (v1.12)
+    [+] Added support for 2 more games - Evade, SCP: Roleplay
+    [+] Fixed user GUI interface
+    [!] Universal GUI > Misc > SCP:Roleplay > Untitled GUI is undergoing fixes.
+
+[>] 10/5/2022 (v1.13)
+    [!] Fixed the erlc anticheat breaking the gui
+    [+] Added 'Open documentation' button in the 'Misc' tab.
+    [-] Removed the option to open changelog on execute
+
+[>] 11/22/2022 (1.14)
+    [*] Changed format of the documentation
+    [+] Added a function to execute the GUI
+    [-] Removed support for SCP: Roleplay
+
+[>] 11/25/2022 (1.15)
+    [+] You can now move your mouse in first person with the GUI open.
+    [+] Script is more user friendly
+
+[>] 12/18/2022 (1.16)
+    [+] Changed Universal GUI size Vector2.new(700, 600)
+    [+] Changed Universal GUI color Color3.fromRGB(138, 43, 226)
+
+[>] 12/19/2022 (1.17)
+    [+] Updated my discord
+    [+] No longer unloads on another script that uses this UI library
+    [*] Renamed (Universal GUI > Misc) to 'Scripts'
+    [+] Added Protosmasher (Universal GUI > Scripts > Protosmasher)
+
+Thanks for using Universal GUI!
+]])
+end
 
 local function Resize(part, new, _delay)
 	_delay = _delay or 0.5
@@ -2026,21 +2105,23 @@ end
 
 do -- Example UI
 	local Window = library:AddWindow("Universal GUI", {
-		main_color = Color3.fromRGB(41, 74, 122),
-		min_size = Vector2.new(500, 600),
+		main_color = Color3.fromRGB(138,43,226),
+		min_size = Vector2.new(700, 600),
 		toggle_key = Enum.KeyCode.RightControl,
 		can_resize = true,
 	})
 	local Exection = Window:AddTab("Exection")
-    local Misc = Window:AddTab("Misc")
+    local Misc = Window:AddTab("Scripts")
     local Information = Window:AddTab("Information")
 
 	do -- Elements
-        Information:AddLabel([[
-            
-Toggle GUI keybind is RightControl
-Made by spin#0877
-GUI template : https://v3rmillion.net/showthread.php?tid=959294]])
+        Information:AddLabel("Toggle GUI keybind is RightControl")
+        Information:AddLabel("Made by spin#0877")
+        Information:AddLabel("GUI template : https://v3rmillion.net/showthread.php?tid=959294")
+
+		Information:AddButton("Open documentation", function()
+			changelog()
+		end)
 
 		local Console = Exection:AddConsole({
 			["y"] = 505,
@@ -2061,16 +2142,40 @@ GUI template : https://v3rmillion.net/showthread.php?tid=959294]])
             loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
         end)
 		Scripts:AddButton("Dark Dex", function()
-            loadstring(game:HttpGet('https://gist.githubusercontent.com/DinosaurXxX/b757fe011e7e600c0873f967fe427dc2/raw/ee5324771f017073fc30e640323ac2a9b3bfc550/dark%2520dex%2520v4'))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
         end)
 	    Scripts:AddButton("Lazy hub", function()
             loadstring(game:HttpGet('loadstring(game:HttpGet("https://raw.githubusercontent.com/LioK251/RbScripts/main/lazyhub.lua"))()'))()
+        end)
+		Scripts:AddButton("No cooldown (for some games)", function()
+            a = hookfunction(wait, function(b)
+			if b == 3 then return a() end
+			return a(b)
+			end)
+        end)
+		Scripts:AddButton("Auto grammar", function()
+            loadstring(game:HttpGet("https://pastebin.com/raw/wpUuVnQd"))()
+        end)
+		Scripts:AddButton("Betterbypasser", function() -- Credit to synergy networks https://discord.gg/gDMmSUmxee
+            getgenv().method = "fn"
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/daddysyn/synergy/additional/betterbypasser",true))()
+        end)
+		Scripts:AddButton("ESP", function() -- Credit to synergy networks https://discord.gg/gDMmSUmxee
+            _G.FriendColor = Color3.fromRGB(0, 0, 255)
+			_G.EnemyColor = Color3.fromRGB(255, 0, 0)
+			_G.UseTeamColor = false
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/zeroisswag/universal-esp/main/esp.lua"))()
         end)
   	    Scripts:AddButton("Anti-AFK", function()
             loadstring(game:HttpGet('loadstring(game:HttpGet("https://pastebin.com/raw/wYdjKRpa"))()'))()
         end)
 
 		local Gamescripts = Misc:AddFolder("Game scripts")
+		local evade = Gamescripts:AddFolder("Evade")
+		evade:AddButton("Untitled GUI", function()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/9Strew/roblox/main/gamescripts/evade.lua'))()
+		end)
+		
 		local YBA = Gamescripts:AddFolder("Your Bizzare Adventure")
 		YBA:AddButton("Script 1", function()
             getgenv().Key = "HelloEpicGUI"
@@ -2091,7 +2196,7 @@ GUI template : https://v3rmillion.net/showthread.php?tid=959294]])
             loadstring(game:HttpGet("https://raw.githubusercontent.com/MXS-Scripts/mxs-free/main/AUT.lua", true))()
         end)
 		AUT:AddButton("Spotify Hub", function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/ewyzu/Spotify-Scripts/main/Project-Slayers"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ewyzu/Spotify-Scripts/main/A-Universal-Time"))()
         end)
 		AUT:AddButton("AUT Universal", function()
             loadstring(game:HttpGet("https://pastebin.com/raw/VkdacbLi"))()
@@ -2114,6 +2219,10 @@ GUI template : https://v3rmillion.net/showthread.php?tid=959294]])
 		DH:AddButton("Autofarm", function()
 			loadstring(game:HttpGet("https://pastebin.com/raw/74VJ07iY", true))()
         end)
+		local other = Misc:AddFolder("Other")
+		other:AddButton("Protosmasher v2", function()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/unofficialbear/Universal-Cheat/main/Protosmasher.lua'))()
+		end
 
         local jojoscripts = Misc:AddFolder("JoJo scripts")
         jojoscripts:AddButton("Dio's timestop", function()
@@ -2127,6 +2236,8 @@ GUI template : https://v3rmillion.net/showthread.php?tid=959294]])
         end)
 	end
 
-	Tab:Show()
+	imgui.Enabled = false
 	library:FormatWindows()
 end
+end
+end)
