@@ -2221,7 +2221,7 @@ do -- Example UI
         end)
 		local other = Misc:AddFolder("Other")
 		other:AddButton("Protosmasher v2", function()
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/unofficialbear/Universal-Cheat/main/Protosmasher.lua'))()
+			loadstring(game:HttpGet('https://github.com/unofficialbear/Universal-GUI/blob/main/Protosmasher.lua'))()
 		end
 
         local jojoscripts = Misc:AddFolder("JoJo scripts")
